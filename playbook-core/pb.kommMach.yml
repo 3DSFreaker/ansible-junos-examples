@@ -10,9 +10,7 @@
   tasks:
     - name: Gather ge-0/0/0 interface information
       juniper.device.rpc:
-        rpcs: "get-interface-information"
-        kwargs:
-          - interface_name: "ge-0/0/0"
+        rpcs: "get-subscribers"
       register: result
     - name: Print Optic Informationen
       debug:
