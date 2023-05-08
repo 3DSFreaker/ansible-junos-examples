@@ -12,5 +12,5 @@
 
   tasks:
     - name: "Get facts"
-    facts:
-    register: response
+      facts:
+        register: response
