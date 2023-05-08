@@ -14,7 +14,7 @@
         rpcs: get-interface-information
         kwargs:
           - terse: True
-      register: result.parsed_output
+      register: result
 
     - name: Print Interface Infos
       debug:
