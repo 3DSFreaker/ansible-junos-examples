@@ -8,9 +8,11 @@
     user: "{{ANSIBLE_NET_USERNAME}}"
     passwd: "{{ANSIBLE_NET_PASSWORD}}"
   collections:
-    - juniper.device
+    - juniper.device.facts
 
   tasks:
     - name: "Get facts"
-      facts:
       register: response
+    - name: "yeet"
+      debug:
+        var: response.ansible_facts.junos.config
