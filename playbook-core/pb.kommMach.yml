@@ -12,7 +12,8 @@
       juniper.device.rpc:
         rpcs: "get-interface-information"
         kwargs:
-          - interface_name: "ge-0/0/0"
+          - interface_name: "ge-*"
+          - interface_name: "xe-*"
       register: result
     - name: Print Optic Informationen
       debug:
