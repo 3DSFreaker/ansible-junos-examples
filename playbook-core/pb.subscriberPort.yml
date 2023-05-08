@@ -22,8 +22,7 @@
 
   tasks:
     - name: Retrieve device facts and configuration and save facts to file
-      juniper.device.facts:        
-        savedir: "{{ playbook_dir }}"
+      juniper.device.facts:
         config_format: "xml"
       register: result
 
