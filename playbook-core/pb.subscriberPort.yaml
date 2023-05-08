@@ -24,10 +24,10 @@
       ansible.builtin.pip:
         name:
           - jmespath>=1.0.0
-      register: python
+      register: pytpack
 
     - name: Filter through Interface Data
-      when: python is changed
+      when: pytpack
       ansible.builtin.debug:
         var: item
-      loop: "{{ result.parsed_output | community.general.json_query('interface-information.physical-interface[*].name') }}"
+      loop: '{{ result.parsed_output | community.general.json_query("interface-information.physical-interface[*].name") }}'
