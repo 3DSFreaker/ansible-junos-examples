@@ -28,4 +28,4 @@
 
     - name: Print configuration
       debug:
-        var: result.ansible_facts
+        var: result.ansible_local
