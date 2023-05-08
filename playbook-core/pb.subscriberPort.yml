@@ -7,25 +7,10 @@
   vars:
     user: "{{ANSIBLE_NET_USERNAME}}"
     passwd: "{{ANSIBLE_NET_PASSWORD}}"
-
-  # tasks:
-  #   - name: Check if
-  #     juniper.device.rpc:
-  #       rpcs: "get-interface-information"
-  #       kwargs:
-  #         - interface_name: "ge-0/0/0"
-  #     register: result
-  #   - name: Print Optic Informationen
-  #     debug:
-  #       msg:
-  #         - Das Interface: "{{ result }}"
+  collections:
+    - juniper.device
 
   tasks:
-    - name: Retrieve device facts and configuration and save facts to file
-      juniper.device.facts:
-        config_format: "xml"
-      register: result
-
-    - name: Print configuration
-      debug:
-        var: result.ansible_facts.junos.config
+    - name: "Get facts"
+  facts:
+  register: response
