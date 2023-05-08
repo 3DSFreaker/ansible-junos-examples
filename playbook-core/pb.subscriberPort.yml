@@ -18,4 +18,4 @@
 
     - name: Print configuration
       debug:
-        var: result.parsed_output.interface_information
+        var: result.parsed_output
