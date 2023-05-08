@@ -9,13 +9,21 @@
     passwd: "{{ANSIBLE_NET_PASSWORD}}"
 
   tasks:
-    - name: Retrieve device facts and configuration and save facts to file
+    - name: Retrieve Interface Infos
       juniper.device.rpc:
         rpcs: get-interface-information
         kwargs:
           - terse: True
-      register: result
+      register: result.parsed_output
 
-    - name: Print configuration
+    - name: Print Interface Infos
       debug:
         var: result.parsed_output
+
+    - name: Filter through Interface Data
+      ansible.builtin.debug:
+        var: item
+      loop: "{{ result.parsed_output | community.general.json_query('interface-information.physical-interface[*].name') }}"
+
+
+
