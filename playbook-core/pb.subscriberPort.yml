@@ -3,17 +3,29 @@
   hosts:
     - all
   connection: local
-  collections:
-    - juniper.device
   gather_facts: no
   vars:
     user: "{{ANSIBLE_NET_USERNAME}}"
     passwd: "{{ANSIBLE_NET_PASSWORD}}"
 
+  # tasks:
+  #   - name: Check if
+  #     juniper.device.rpc:
+  #       rpcs: "get-interface-information"
+  #       kwargs:
+  #         - interface_name: "ge-0/0/0"
+  #     register: result
+  #   - name: Print Optic Informationen
+  #     debug:
+  #       msg:
+  #         - Das Interface: "{{ result }}"
+
   tasks:
-    - name: "Get facts"
+    - name: Retrieve device facts and configuration and save facts to file
       juniper.device.facts:
-      register: response
-    - name: "yeet"
+        config_format: "xml"
+      register: result
+
+    - name: Print configuration
       debug:
-        var: response.ansible_facts.junos.config
+        var: result.ansible_facts.junos.config
