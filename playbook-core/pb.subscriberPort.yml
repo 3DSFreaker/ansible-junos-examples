@@ -22,8 +22,11 @@
 
   tasks:
     - name: Retrieve device facts and configuration and save facts to file
-      juniper.device.facts:
-        config_format: "json"
+      juniper.device.rpc:
+        rpcs: get-interface-information
+        - iterate:
+          xpath: physical-interface
+          id: './name'
       register: result
 
     - name: Print configuration
