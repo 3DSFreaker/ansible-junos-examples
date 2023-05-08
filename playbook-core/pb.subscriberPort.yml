@@ -3,15 +3,16 @@
   hosts:
     - all
   connection: local
+  roles:
+      - juniper.device
   gather_facts: no
   vars:
     user: "{{ANSIBLE_NET_USERNAME}}"
     passwd: "{{ANSIBLE_NET_PASSWORD}}"
-  collections:
-    - juniper.device.facts
 
   tasks:
     - name: "Get facts"
+      juniper.device.facts:
       register: response
     - name: "yeet"
       debug:
