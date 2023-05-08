@@ -12,8 +12,10 @@
     - name: Retrieve device facts and configuration and save facts to file
       juniper.device.rpc:
         rpcs: get-interface-information
+        kwargs:
+          - terse: True
       register: result
 
     - name: Print configuration
       debug:
-        var: result
+        var: result.parsed_output
