@@ -20,6 +20,11 @@
       debug:
         var: result.parsed_output
 
+    - name: Install jmespath
+      ansible.builtin.pip:
+        name:
+          - jmespath>=1.1.0
+
     - name: Filter through Interface Data
       ansible.builtin.debug:
         var: item
