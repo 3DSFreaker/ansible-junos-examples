@@ -30,4 +30,4 @@
       when: pytpack
       ansible.builtin.debug:
         var: item
-      loop: "{{ result | community.general.json_query('`parsed_output.interface-information.physical-interface[*].name`') }}"
+      loop: "{{ result | community.general.json_query('`parsed_output.interface-information.physical-interface[*].name`'), wantlist=True }}"
