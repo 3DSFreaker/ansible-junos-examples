@@ -24,7 +24,7 @@
       ansible.builtin.pip:
         name:
           - jmespath>=1.0.0
-        register: python
+      register: python
 
     - name: Filter through Interface Data
       when: python is changed
