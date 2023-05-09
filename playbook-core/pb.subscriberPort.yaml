@@ -30,4 +30,4 @@
       when: pytpack is changed
       ansible.builtin.debug:
         var: rpc_reply
-      loop: "{{ result | community.general.json_query('rpc_reply.parsed_output.`interface-information`') | list }}"
+      loop: "{{ result | community.general.json_query(`rpc_reply.parsed_output.'interface-information'`) | list }}"
