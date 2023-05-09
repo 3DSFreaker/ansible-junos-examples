@@ -14,11 +14,13 @@
         rpcs: get-interface-information
         kwargs:
           - terse: True
-      register: rpc_reply
+      register: result
 
-    - name: Print Interface Infos
+    - name: Print Interface Infos and set Facts
       debug:
-        var: rpc_reply.parsed_output
+        var: result.parsed_output
+      set_fact:
+        interfaces: "{{result.parsed_output.interface-information.physical-interface}}"
 
     - name: Install jmespath
       ansible.builtin.pip:
@@ -28,6 +30,5 @@
 
     - name: Filter through Interface Data
       when: pytpack is changed
-      ansible.builtin.debug:
-        var: rpc_reply
-      loop: '{{ rpc_reply| community.general.json_query("rpc_reply.parsed_output.interface_information") | list }}'
+      debug:
+        var: interfaces
