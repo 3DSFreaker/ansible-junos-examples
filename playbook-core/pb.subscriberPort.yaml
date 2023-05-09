@@ -22,7 +22,7 @@
     
     - name: Set Interface Infos as Fact
       set_fact:
-        interfaces: "{{result.parsed_output.interface-information.physical-interface}}"
+        interfaces: "{{result.parsed_output.'interface-information'.'physical-interface'}}"
 
     - name: Install jmespath
       ansible.builtin.pip:
