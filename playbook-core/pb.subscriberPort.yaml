@@ -16,9 +16,11 @@
           - terse: True
       register: result
 
-    - name: Print Interface Infos and set Facts
+    - name: Print Interface Infos
       debug:
         var: result.parsed_output
+    
+    - name: Set Interface Infos as Fact
       set_fact:
         interfaces: "{{result.parsed_output.interface-information.physical-interface}}"
 
