@@ -29,5 +29,5 @@
     - name: Filter through Interface Data
       when: pytpack is changed
       ansible.builtin.debug:
-        var: item
+        var: result
       loop: '{{ result | community.general.json_query(`parsed_output.interface-information.physical-interface[*].name`) | list }}'
